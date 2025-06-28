@@ -1,6 +1,5 @@
 #![allow(warnings)]
 
-
 #[cfg(test)]
 mod tests {
     use rsnltk::{download_lang, ner, tokenize, download_langs, tokenize_sentence, lang, sentiment, mwt_expand, pos, dependency_tree};
