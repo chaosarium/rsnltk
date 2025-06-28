@@ -20,11 +20,13 @@ exclude=[
     "examples",
     "experiments"
 ]
+doctest = false
 
 [lib]
 crate-type=["cdylib","rlib"]
 name="rsnltk"
 path= "src/lib.rs"
+doctest = false
 
 [dependencies]
 natural = { version = "0.4.0", features = ["serde_support"]}
@@ -41,3 +43,4 @@ word2vec = "0.3.3"
 [dependencies.pyo3]
 version = "0.25.1"
 features = ["auto-initialize"]
+
