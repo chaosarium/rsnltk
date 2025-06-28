@@ -1,3 +1,4 @@
+#![allow(warnings)]
 extern crate core;
 
 pub mod wordnet;

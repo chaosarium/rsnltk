@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 use pyo3::prelude::*;
 use pyo3::types::IntoPyDict;
+use std::ffi::CString;
 
 ///
 /// This function expands a raw token into multiple syntactic words, which makes it easier to carry out Universal Dependencies analysis in some languages.
@@ -38,10 +39,10 @@ fn _mwt_expand(text:&str,lang:&str) -> PyResult<Vec<Vec<HashMap<String,String>>>
     Python::with_gil(|py| {
         let results:Vec<Vec<HashMap<String,String>>>= PyModule::from_code(
             py,
-            py_tokenize,
-            "",
-            "",
-        )?.getattr("mwt_expand")?.call((),Some(kwargs.into_py_dict(py)))?.extract()?;
+            &CString::new(py_tokenize).unwrap(),
+            &CString::new("").unwrap(),
+            &CString::new("").unwrap(),
+        )?.getattr("mwt_expand")?.call((),Some(&kwargs.into_py_dict(py)?))?.extract()?;
 
         // println!("{:?}",results);
 
@@ -99,10 +100,10 @@ fn _download_lang(lang:&str) -> PyResult<bool> {
     Python::with_gil(|py| {
         let downloaded:bool= PyModule::from_code(
             py,
-            py_tokenize,
-            "",
-            "",
-        )?.getattr("download_lang")?.call((),Some(kwargs.into_py_dict(py)))?.extract()?;
+            &CString::new(py_tokenize).unwrap(),
+            &CString::new("").unwrap(),
+            &CString::new("").unwrap(),
+        )?.getattr("download_lang")?.call((),Some(&kwargs.into_py_dict(py)?))?.extract()?;
 
         // println!("{:?}",downloaded);
 
@@ -147,10 +148,10 @@ fn _lang(list_text:Vec<&str>) -> PyResult<Vec<HashMap<String,String>>> {
     Python::with_gil(|py| {
         let tags:Vec<HashMap<String,String>>= PyModule::from_code(
             py,
-            py_tokenize,
-            "",
-            "",
-        )?.getattr("lang")?.call((),Some(kwargs.into_py_dict(py)))?.extract()?;
+            &CString::new(py_tokenize).unwrap(),
+            &CString::new("").unwrap(),
+            &CString::new("").unwrap(),
+        )?.getattr("lang")?.call((),Some(&kwargs.into_py_dict(py)?))?.extract()?;
 
         // println!("{:?}",tags);
 
@@ -203,10 +204,10 @@ fn _pos(text:&str,lang:&str) -> PyResult<Vec<HashMap<String,String>>> {
     Python::with_gil(|py| {
         let tags:Vec<HashMap<String,String>>= PyModule::from_code(
             py,
-            py_tokenize,
-            "",
-            "",
-        )?.getattr("tag")?.call((),Some(kwargs.into_py_dict(py)))?.extract()?;
+            &CString::new(py_tokenize).unwrap(),
+            &CString::new("").unwrap(),
+            &CString::new("").unwrap(),
+        )?.getattr("tag")?.call((),Some(&kwargs.into_py_dict(py)?))?.extract()?;
 
         println!("{:?}",tags);
 
@@ -232,10 +233,10 @@ fn _pos_chinese(text:&str,lang:&str) -> PyResult<Vec<HashMap<String,String>>> {
     Python::with_gil(|py| {
         let tags:Vec<HashMap<String,String>>= PyModule::from_code(
             py,
-            py_tokenize,
-            "",
-            "",
-        )?.getattr("tag_chinese")?.call((),Some(kwargs.into_py_dict(py)))?.extract()?;
+            &CString::new(py_tokenize).unwrap(),
+            &CString::new("").unwrap(),
+            &CString::new("").unwrap(),
+        )?.getattr("tag_chinese")?.call((),Some(&kwargs.into_py_dict(py)?))?.extract()?;
 
         println!("{:?}",tags);
 
@@ -279,10 +280,10 @@ fn _sentiment(text:&str,lang:&str) -> PyResult<Vec<HashMap<String,String>>> {
     Python::with_gil(|py| {
         let sentiments:Vec<HashMap<String,String>>= PyModule::from_code(
             py,
-            py_tokenize,
-            "",
-            "",
-        )?.getattr("sentiment")?.call((),Some(kwargs.into_py_dict(py)))?.extract()?;
+            &CString::new(py_tokenize).unwrap(),
+            &CString::new("").unwrap(),
+            &CString::new("").unwrap(),
+        )?.getattr("sentiment")?.call((),Some(&kwargs.into_py_dict(py)?))?.extract()?;
 
         println!("{:?}",sentiments);
 
@@ -327,10 +328,10 @@ fn _tokenize(text:&str,lang:&str) -> PyResult<Vec<Vec<HashMap<String,String>>>> 
     Python::with_gil(|py| {
         let list_result:Vec<Vec<HashMap<String,String>>> = PyModule::from_code(
             py,
-            py_tokenize,
-            "",
-            "",
-        )?.getattr("tokenize")?.call((),Some(kwargs.into_py_dict(py)))?.extract()?;
+            &CString::new(py_tokenize).unwrap(),
+            &CString::new("").unwrap(),
+            &CString::new("").unwrap(),
+        )?.getattr("tokenize")?.call((),Some(&kwargs.into_py_dict(py)?))?.extract()?;
 
         println!("{:?}",list_result);
 
@@ -372,10 +373,10 @@ fn _tokenize_sentence(text:&str,lang:&str) -> PyResult<Vec<String>> {
     Python::with_gil(|py| {
         let list_result:Vec<String> = PyModule::from_code(
             py,
-            py_tokenize,
-            "",
-            "",
-        )?.getattr("tokenize_sentence")?.call((),Some(kwargs.into_py_dict(py)))?.extract()?;
+            &CString::new(py_tokenize).unwrap(),
+            &CString::new("").unwrap(),
+            &CString::new("").unwrap(),
+        )?.getattr("tokenize_sentence")?.call((),Some(&kwargs.into_py_dict(py)?))?.extract()?;
 
         println!("{:?}",list_result);
 
@@ -418,10 +419,10 @@ fn _ner(text:&str,lang:&str) -> PyResult<Vec<HashMap<String,String>>> {
     Python::with_gil(|py| {
         let list_result:Vec<HashMap<String,String>> = PyModule::from_code(
             py,
-            py_ner,
-            "",
-            "",
-        )?.getattr("getNER")?.call((),Some(kwargs.into_py_dict(py)))?.extract()?;
+            &CString::new(py_ner).unwrap(),
+            &CString::new("").unwrap(),
+            &CString::new("").unwrap(),
+        )?.getattr("getNER")?.call((),Some(&kwargs.into_py_dict(py)?))?.extract()?;
 
         // println!("{:?}",list_result);
 
@@ -472,10 +473,10 @@ fn _dependency_tree_chinese(text:&str,lang:&str) -> PyResult<Vec<Vec<HashMap<Str
     Python::with_gil(|py| {
         let list_result:Vec<Vec<HashMap<String,String>>> = PyModule::from_code(
             py,
-            py_tokenize,
-            "",
-            "",
-        )?.getattr("parse_dependency_chinese")?.call((),Some(kwargs.into_py_dict(py)))?.extract()?;
+            &CString::new(py_tokenize).unwrap(),
+            &CString::new("").unwrap(),
+            &CString::new("").unwrap(),
+        )?.getattr("parse_dependency_chinese")?.call((),Some(&kwargs.into_py_dict(py)?))?.extract()?;
 
         println!("{:?}",list_result);
 
@@ -502,10 +503,10 @@ fn _dependency_tree(text:&str,lang:&str) -> PyResult<Vec<Vec<HashMap<String,Stri
     Python::with_gil(|py| {
         let list_result:Vec<Vec<HashMap<String,String>>> = PyModule::from_code(
             py,
-            py_tokenize,
-            "",
-            "",
-        )?.getattr("parse_dependency")?.call((),Some(kwargs.into_py_dict(py)))?.extract()?;
+            &CString::new(py_tokenize).unwrap(),
+            &CString::new("").unwrap(),
+            &CString::new("").unwrap(),
+        )?.getattr("parse_dependency")?.call((),Some(&kwargs.into_py_dict(py)?))?.extract()?;
 
         println!("{:?}",list_result);
 
