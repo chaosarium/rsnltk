@@ -1,3 +1,5 @@
+#![allow(warnings)]
+
 #[cfg(test)]
 mod tests{
     use rsnltk::wordnet::wordnet_similarity;
